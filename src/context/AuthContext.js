@@ -16,15 +16,18 @@ const initialState = {
 function AuthProvider({ children }) {
   const [state, setState] = React.useState(initialState);
 
-  const handleLogin = React.useCallback(async (user) => {
-    try {
-      const { data: loggedUser } = await login(user);
-      saveUser(loggedUser);
-      setState({ user: { ...loggedUser, isLogged: true } });
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
+  const handleLogin = React.useCallback(
+    async (user) => {
+      try {
+        const { data: loggedUser } = await login(user);
+        saveUser(loggedUser);
+        setState({ user: { ...loggedUser, isLogged: true } });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    [login, setState, saveUser]
+  );
 
   const handleSignup = React.useCallback(async (user) => {
     try {
