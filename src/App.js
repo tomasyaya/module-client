@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
 import { PrivateRoute, AnonRoute } from "./components/Routes";
 import { getUser } from "./service/auth.service";
 import Login from "./components/Login/Login";
@@ -14,6 +14,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         App
+        <Link to="/login">Login</Link>
+        <Link to="/private">Private</Link>
         <Switch>
           <PrivateRoute exact path="/private">
             <div>
